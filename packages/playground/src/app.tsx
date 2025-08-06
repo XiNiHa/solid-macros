@@ -1,3 +1,16 @@
+import { onMount } from "solid-js";
+
 export default function App() {
-	return <main>Hello world!</main>;
+	const div = <div />;
+
+	onMount(() => {
+		console.log(div.clientTop);
+	});
+
+	return (
+		<main>
+			Hello world!
+			{div}
+		</main>
+	);
 }
