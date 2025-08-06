@@ -1,0 +1,6 @@
+packages:
+  - packages/*
+
+catalog:
+  "@ts-macro/tsc": ^0.3.2
+  typescript: ^5.9.2
