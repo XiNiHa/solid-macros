@@ -4,6 +4,10 @@
 	"type": "module",
 	"description": "Volar/TS Macro plugin for improving Solid developer experience",
 	"author": "XiNiHa <me@xiniha.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:XiNiHa/solid-macros.git"
+	},
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.cts",
 	"exports": {
