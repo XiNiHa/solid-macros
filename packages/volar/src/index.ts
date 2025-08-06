@@ -1,6 +1,7 @@
 import { createPlugin, type TsmLanguagePlugin } from "ts-macro";
 
 interface Options {
+	/** Whether to typecast JSX tags with DOM elements into corresponding HTML elements */
 	typedDomJsx?: boolean;
 }
 
