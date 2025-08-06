@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
+      - name: update npm
+        run: npm install -g npm@latest
       - name: setup pnpm config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: install dependencies
