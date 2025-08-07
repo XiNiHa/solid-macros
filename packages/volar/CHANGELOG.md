@@ -1,5 +1,11 @@
 # @solid-macros/volar
 
+## 0.1.3
+
+### Patch Changes
+
+- 701e5fe: Add new feature: narrowed-switch
+
 ## 0.1.2
 
 ### Patch Changes
