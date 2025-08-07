@@ -1,5 +1,12 @@
 # @solid-macros/volar
 
+## 0.1.2
+
+### Patch Changes
+
+- e209282: Add new feature: unwrapped-accessors
+- 3ee5647: Add new feature: narrowed-show
+
 ## 0.1.1
 
 ### Patch Changes
