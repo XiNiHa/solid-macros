@@ -4,6 +4,7 @@ export default {
 	plugins: [
 		solidMacros({
 			typedDomJsx: true,
+			narrowedShow: true,
 		}),
 	],
 };

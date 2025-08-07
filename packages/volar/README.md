@@ -33,3 +33,26 @@ console.log(el.clientTop);
 // before: type error
 // after: correctly typechecked
 ```
+
+### narrowed-show
+
+Make `<Show>` narrow the types with the condition.
+
+Pass `narrowedShow: true` to the plugin config to enable.
+
+```tsx
+const nullableArray: number[] | null = Math.random() > 0.5 ? [0] : null;
+
+<Show
+	when={nullableArray}
+	fallback={nullableArray}
+	// before: number[] | null
+	// after: null
+>
+	{
+		nullableArray.length
+		// before: type error due to nullableArray being number[] | null
+		// after: nullableArray narrowed to number[], no error
+	}
+</Show>
+```
