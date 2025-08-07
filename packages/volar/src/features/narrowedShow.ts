@@ -33,11 +33,16 @@ export const narrowedShow = ({ ts }: Context): TsmLanguagePlugin => ({
 						(ts.isJsxExpression(fallback?.initializer)
 							? fallback.initializer.expression
 							: fallback?.initializer);
+					const isInJsx =
+						ts.isJsxElement(node.parent) || ts.isJsxFragment(node.parent);
+
 					codes.replaceRange(
 						node.pos,
 						node.end,
-						// convert to a JsxExpression with a ternary
-						"{(",
+						//
+						isInJsx ? "{" : "",
+						// convert to a ternary
+						"(",
 						// insert dummy <Show> for...
 						// - making TS to not incorrectly flag Show as unused
 						// - displaying correct semantic highlighting
@@ -89,7 +94,8 @@ export const narrowedShow = ({ ts }: Context): TsmLanguagePlugin => ({
 						fallbackExpr
 							? [fallbackExpr.getText(ast), fallbackExpr.getStart(ast)]
 							: "null",
-						")}",
+						")",
+						isInJsx ? "}" : "",
 					);
 				}
 			}
