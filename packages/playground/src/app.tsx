@@ -1,4 +1,4 @@
-import { onMount, Show } from "solid-js";
+import { createEffect, createSignal, onMount, Show } from "solid-js";
 
 export default function App() {
 	const div = <div />;
@@ -9,6 +9,17 @@ export default function App() {
 
 	const nullable = Math.random() > 0.5 ? [] : null;
 
+	const [nullableNum$, setNullableNum] = createSignal<number | null>(
+		Math.random(),
+	);
+	const reset = () =>
+		setNullableNum(Math.random() > 0.5 ? Math.random() : null);
+
+	createEffect(() => {
+		if (nullableNum$() == null) return;
+		console.log(nullableNum$().toLocaleString());
+	});
+
 	return (
 		<main>
 			Hello world!
@@ -16,6 +27,14 @@ export default function App() {
 			<Show when={nullable} fallback={nullable satisfies null}>
 				{nullable.length}
 			</Show>
+			<button type="button" onClick={reset}>
+				<Show
+					when={nullableNum$() != null}
+					fallback={nullableNum$() satisfies null}
+				>
+					{nullableNum$().toLocaleString()}
+				</Show>
+			</button>
 		</main>
 	);
 }

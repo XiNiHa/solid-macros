@@ -45,6 +45,9 @@ importers:
 
   packages/volar:
     dependencies:
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
       ts-macro:
         specifier: ^0.3.2
         version: 0.3.2

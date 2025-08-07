@@ -5,6 +5,7 @@ export default {
 		solidMacros({
 			typedDomJsx: true,
 			narrowedShow: true,
+			unwrappedAccessors: true,
 		}),
 	],
 };

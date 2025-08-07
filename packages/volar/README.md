@@ -54,5 +54,23 @@ const nullableArray: number[] | null = Math.random() > 0.5 ? [0] : null;
 		// before: type error due to nullableArray being number[] | null
 		// after: nullableArray narrowed to number[], no error
 	}
-</Show>
+</Show>;
+```
+
+### unwrapped-accessors
+
+Automatically unwrap accessors as variables for hinting idempotency.
+
+Pass `unwrappedAccessor: true` to the plugin config to enable.
+
+```tsx
+// the macro works based on the naming convention
+// you can configure custom patterns using the `accessorPattern` option
+const [wrapperRef$, setWrapperRef] = createSignal<HTMLElement | undefined>();
+createEffect(() => {
+	if (!wrapperRef$()) return;
+	console.log(wrapperRef$().clientTop);
+	// before: type error due wrapperRef() being HTMLElement | null
+	// after: wrapperRef() narrowed to HTMLElement, no error
+});
 ```
