@@ -1,4 +1,11 @@
-import { createEffect, createSignal, onMount, Show } from "solid-js";
+import {
+	createEffect,
+	createSignal,
+	Match,
+	onMount,
+	Show,
+	Switch,
+} from "solid-js";
 
 export default function App() {
 	const div = <div />;
@@ -20,6 +27,8 @@ export default function App() {
 		console.log(nullableNum$().toLocaleString());
 	});
 
+	const [route$] = createSignal<"home" | "about" | "settings">();
+
 	return (
 		<main>
 			Hello world!
@@ -35,6 +44,17 @@ export default function App() {
 					{nullableNum$().toLocaleString()}
 				</Show>
 			</button>
+			<Switch fallback={`Not found: ${String(route$() satisfies undefined)}`}>
+				<Match when={route$() === "home"}>
+					{route$() satisfies "home"} Page
+				</Match>
+				<Match when={route$() === "about"}>
+					{route$() satisfies "about"} Page
+				</Match>
+				<Match when={route$() === "settings"}>
+					{route$() satisfies "settings"} Page
+				</Match>
+			</Switch>
 		</main>
 	);
 }

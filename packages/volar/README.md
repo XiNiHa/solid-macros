@@ -19,21 +19,6 @@ export default {
 
 ## Features
 
-### typed-dom-jsx
-
-Typecast JSX tags with DOM elements into corresponding HTML elements.
-
-Pass `typedDomJsx: true` to the plugin config to enable.
-
-```tsx
-const el = <div />;
-// before: JSX.Element
-// after: HTMLDivElement
-console.log(el.clientTop);
-// before: type error
-// after: correctly typechecked
-```
-
 ### narrowed-show
 
 Make `<Show>` narrow the types with the condition.
@@ -55,6 +40,59 @@ const nullableArray: number[] | null = Math.random() > 0.5 ? [0] : null;
 		// after: nullableArray narrowed to number[], no error
 	}
 </Show>;
+```
+
+### narrowed-switch
+
+Make `<Switch>` narrow the types with the condition.
+
+Pass `narrowedSwitch: true` to the plugin config to enable.
+
+```tsx
+const route = "home" as "home" | "about" | "settings" | undefined;
+
+<Switch
+	fallback={route}
+	// before: "home" | "about" | "settings" | undefined
+	// after: undefined
+>
+	<Match when={route === "home"}>
+		{
+			route
+			// before: "home" | "about" | "settings" | undefined
+			// after: "home"
+		}
+	</Match>
+	<Match when={route === "about"}>
+		{
+			route
+			// before: "home" | "about" | "settings" | undefined
+			// after: "about"
+		}
+	</Match>
+	<Match when={route === "settings"}>
+		{
+			route
+			// before: "home" | "about" | "settings" | undefined
+			// after: "settings"
+		}
+	</Match>
+</Switch>;
+```
+
+### typed-dom-jsx
+
+Typecast JSX tags with DOM elements into corresponding HTML elements.
+
+Pass `typedDomJsx: true` to the plugin config to enable.
+
+```tsx
+const el = <div />;
+// before: JSX.Element
+// after: HTMLDivElement
+console.log(el.clientTop);
+// before: type error
+// after: correctly typechecked
 ```
 
 ### unwrapped-accessors
