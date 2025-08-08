@@ -6,6 +6,7 @@ import {
 	type UnwrappedAccessorsOptions,
 	unwrappedAccessors,
 } from "./features/unwrappedAccessors";
+import { jsxToFn } from "./features/jsxToFn";
 
 interface Options {
 	/** Whether to make `<Show>` narrow the types with the condition */
@@ -30,5 +31,6 @@ export default createPlugin<Options | undefined>((ctx, options) => {
 					? options.unwrappedAccessors
 					: undefined,
 			),
+		jsxToFn(ctx),
 	].filter((v) => !!v);
 });
