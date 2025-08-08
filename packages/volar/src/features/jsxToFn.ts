@@ -55,9 +55,11 @@ export const jsxToFn = ({ ts }: Context): TsmLanguagePlugin => ({
 						}),
 						...(ts.isJsxElement(node) && contentfulChildren.length > 0
 							? ([
-									..."children"
-										.split("")
-										.map((char): Code => [char, node.openingElement.end - 1]),
+									[
+										"children",
+										node.openingElement.tagName.pos,
+										{ verification: true },
+									],
 									":",
 									...(contentfulChildren.length > 1
 										? ([
